@@ -46,7 +46,10 @@ jobs:
 
       - name: Run the script
         run: |
+          print(Sys.getenv())
+
           source("print_args.R")
 
-          print(Sys.getenv())
         shell: Rscript {0}
+        env:
+          MY_BACKEND: ${{ matrix.config.backend }}
