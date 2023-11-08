@@ -1,0 +1,30 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branch: main
+  pull_request:
+    branch: main
+  release:
+    types: [published]
+  workflow_dispatch:
+
+name: Hello world!
+
+jobs:
+  hello:
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {person: foo, lucky-number: 42}
+          - {person: hunter, lucky-number: 2}
+    
+    name: Greet ${{ matrix.config.person }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run for ${{ matrix.config.person }} 
+        shell: bash {0}
+        run: |
+          printf 'Hello, %s! Your lucky number is %s!' "${{ matrix.config.person }}" "${{ matrix.config.lucky-number }}"
