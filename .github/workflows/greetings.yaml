@@ -36,6 +36,7 @@ jobs:
         config:
           - {backend: Postgres, script: print_args.R}
           - {backend: RSQLite, script: print_args.R}
+          - {script: print_hello.R}
 
 
     runs-on: ubuntu-latest
