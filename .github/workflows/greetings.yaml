@@ -47,4 +47,6 @@ jobs:
       - name: Run the script
         run: |
           source("print_args.R")
-        shell: Rscript {0} ${{ matrix.config.backend }}
+        shell: Rscript {0}
+        with:
+          backend: ${{ matrix.config.backend }}
