@@ -28,3 +28,23 @@ jobs:
         shell: bash {0}
         run: |
           printf 'Hello, %s! Your lucky number is %s!' "${{ matrix.config.person }}" "${{ matrix.config.lucky-number }}"
+
+  print-args:
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {backend: Postgres}
+          - {backend: RSQLite}
+
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: r-lib/actions/setup-r@v2
+
+      - name: Run the script
+        run: |
+          source("print_args.R")
+        shell: Rscript {0} ${{ matrix.config.backend }}
