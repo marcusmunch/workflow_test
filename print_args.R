@@ -1,12 +1,19 @@
-load_backend <- function(backend_name) {
-  backend_functions <- list(
-    "Postgres" = "RPostgres::Postgres",
-    "RSQLite" = "RSQLite::SQLite"
-  )
+if (!requireNamespace("jsonlite", quietly = TRUE)) install.packages("jsonlite")
 
-  return(backend_functions[[backend_name]])
-}
+args <- commandArgs(trailingOnly = TRUE)
 
-bck <- Sys.getenv("MY_BACKEND")
+print(args)
 
-cat("Driver to use for ", bck, " is ", load_backend(bck), "()\n", sep  = "")
+env <- Sys.getenv()
+
+drv <- env[grepl("drv$", names(env), ignore.case = TRUE)]
+args <- env[grepl("args$", names(env), ignore.case = TRUE)]
+
+print("env")
+print(env)
+
+message("drv")
+print(drv)
+
+message("args")
+print(args)
