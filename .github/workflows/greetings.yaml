@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config:
+        include:
           - name: SQLite
             drv: RSQLite::SQLite
             args:
@@ -49,10 +49,10 @@ jobs:
 
       - name: Debug matrix config
         run: |
-          echo "${{ matrix.config }}"
-          echo "${{ matrix.config.drv }}"
-          echo "${{ matrix.config.args }}"
-          for config in "${{ matrix.config }}"; do
+          echo "${{ matrix }}"
+          echo "${{ matrix.drv }}"
+          echo "${{ matrix.args }}"
+          for config in "${{ matrix }}"; do
             name=$(echo "$config" | jq -r '.name')
             args=$(echo "$config" | jq -r '.args')
             echo "Processing config: $name"
@@ -61,8 +61,8 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v2
 
-      - name: Print arguments for ${{ matrix.config.name }}
+      - name: Print arguments for ${{ matrix.name }}
         run: Rscript print_args.R
         env:
-          drv: ${{ matrix.config.drv }}
-          arg_list: ${{ matrix.config.args }}
+          drv: ${{ matrix.drv }}
+          arg_list: ${{ matrix.args }}
