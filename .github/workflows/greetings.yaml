@@ -48,7 +48,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Debug matrix config
-        run: echo "${{ matrix.config }}"
+        run: |
+          args=$(echo "${{ matrix.config.args }}" | jq -r '.')
+          echo "Args: $args"
 
       - uses: r-lib/actions/setup-r@v2
 
