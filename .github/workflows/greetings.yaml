@@ -54,4 +54,5 @@ jobs:
         run: Rscript print_args.R
         env:
           drv: ${{ matrix.config.drv }}
-          args: ${{ matrix.config.args }}
+          args: |
+            ${{ matrix.config.args }}
