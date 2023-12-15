@@ -49,8 +49,9 @@ jobs:
 
       - name: Debug matrix config
         run: |
-          args=$(echo "${{ matrix.config.args }}" | jq -r '.')
-          echo "Args: $args"
+          echo "${{ matrix.config.name }}"
+          echo "${{ matrix.config.drv }}"
+          echo "${{ matrix.config.args }}"
 
       - uses: r-lib/actions/setup-r@v2
 
