@@ -32,6 +32,7 @@ jobs:
       matrix:
         config:
           - name: SQLite
+            drv: RSQLite::SQLite
             args:
               dbname: ":memory:"
           - name: MSSQL
@@ -54,4 +55,5 @@ jobs:
         run: Rscript print_args.R
         env:
           drv: ${{ matrix.config.drv }}
-          args: "${{ matrix.config.args }}"
+          arg_list: |
+            ${{ matrix.config.args }}
