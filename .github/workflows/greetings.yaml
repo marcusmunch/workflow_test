@@ -34,12 +34,12 @@ jobs:
           - name: SQLite
             drv: RSQLite::SQLite
             args:
-              - dbname: ":memory:"
+              dbname: ":memory:"
           - name: MSSQL
             drv: odbc::odbc
             args:
-              - foo: bar
-                hunter: 2
+              foo: bar
+              hunter: 2
           - name: Postgres
             drv: RPostgres::Postgres
 
